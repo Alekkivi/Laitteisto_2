@@ -20,13 +20,12 @@ def rotary_handler(pin):
 
 # Set a new selected row by toggling the rotary encoder. 
 def toggle_handler(pin):
-    global prev_press_time, selected_row
+    global prev_press_time
     current_time = time.ticks_ms()
     
     # If the difference between last press and current is larger than min_interval --> There was no switch bounce detected
     if time.ticks_diff(current_time, prev_press_time) > min_interval:
         rotation_queue.put(2)
-        selected_row = current_row
         prev_press_time = current_time
 
 
